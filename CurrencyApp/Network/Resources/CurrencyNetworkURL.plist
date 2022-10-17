@@ -2,13 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>SchemeUserState</key>
+	<key>CurrencyService</key>
 	<dict>
-		<key>CurrencyApp.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
-		</dict>
+		<key>APIKey</key>
+		<string>3k7t62q8bGjV0IG0vEkt2vUdn207fSUk</string>
+		<key>BaseUrl</key>
+		<string>http:\/\/data.fixer.io/api/</string>
 	</dict>
 </dict>
 </plist>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="c4f-lU-aSk">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="YW5-zc-Xhr">
+            <objects>
+                <navigationController id="c4f-lU-aSk" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hTG-Ot-ba8">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BK9-gX-d7S" kind="relationship" relationship="rootViewController" id="Mh8-kf-0gy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dAf-O1-njk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-517" y="123"/>
+        </scene>
+        <!--Currency ConverterVC-->
+        <scene sceneID="O1H-eG-LFC">
+            <objects>
+                <viewController id="BK9-gX-d7S" customClass="CurrencyConverterVC" customModule="CurrencyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HOP-Mx-sEa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swa-r8-kQs">
+                                <rect key="frame" x="20" y="108" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cJl-bo-bE3">
+                                <rect key="frame" x="20" y="158.5" width="374" height="44"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="USD" borderStyle="roundedRect" placeholder="From" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fat-Ln-TbE" customClass="CurrencyPickerTF" customModule="CurrencyApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="142" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gub-mU-vz7">
+                                        <rect key="frame" x="162" y="0.0" width="50" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="GJy-EE-MXx"/>
+                                            <constraint firstAttribute="height" constant="44" id="XYW-fg-lg7"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="SwapIcon" title=" "/>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="INR" borderStyle="roundedRect" placeholder="To" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B3g-XO-6qf" customClass="CurrencyPickerTF" customModule="CurrencyApp" customModuleProvider="target">
+                                        <rect key="frame" x="232" y="0.0" width="142" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="fat-Ln-TbE" firstAttribute="width" secondItem="B3g-XO-6qf" secondAttribute="width" id="sPA-td-RUV"/>
+                                </constraints>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JfV-AJ-Pbw">
+                                <rect key="frame" x="20" y="232.5" width="142" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JDQ-3h-iaO">
+                                <rect key="frame" x="252" y="232.5" width="142" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cf-am-hic">
+                                <rect key="frame" x="157" y="296.5" width="100" height="31"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="KwF-Ls-yBu"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Details"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="W8T-rk-8jp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4cf-am-hic" firstAttribute="centerX" secondItem="HOP-Mx-sEa" secondAttribute="centerX" id="4d7-Qk-I1H"/>
+                            <constraint firstItem="JDQ-3h-iaO" firstAttribute="centerY" secondItem="JfV-AJ-Pbw" secondAttribute="centerY" id="D2Q-Rg-bUL"/>
+                            <constraint firstItem="W8T-rk-8jp" firstAttribute="trailing" secondItem="cJl-bo-bE3" secondAttribute="trailing" constant="20" id="Htu-4z-Xaf"/>
+                            <constraint firstItem="W8T-rk-8jp" firstAttribute="trailing" secondItem="swa-r8-kQs" secondAttribute="trailing" constant="20" id="Ifk-rI-GPf"/>
+                            <constraint firstItem="JDQ-3h-iaO" firstAttribute="leading" secondItem="B3g-XO-6qf" secondAttribute="leading" id="KXO-qF-ZJi"/>
+                            <constraint firstItem="swa-r8-kQs" firstAttribute="top" secondItem="W8T-rk-8jp" secondAttribute="top" constant="20" id="LM0-lE-84S"/>
+                            <constraint firstItem="swa-r8-kQs" firstAttribute="leading" secondItem="W8T-rk-8jp" secondAttribute="leading" constant="20" id="Pry-m0-F6q"/>
+                            <constraint firstItem="cJl-bo-bE3" firstAttribute="top" secondItem="swa-r8-kQs" secondAttribute="bottom" constant="30" id="Si8-sy-xie"/>
+                            <constraint firstItem="JDQ-3h-iaO" firstAttribute="width" secondItem="JfV-AJ-Pbw" secondAttribute="width" id="Y5a-en-GZ3"/>
+                            <constraint firstItem="JfV-AJ-Pbw" firstAttribute="leading" secondItem="fat-Ln-TbE" secondAttribute="leading" id="Zeh-WW-a24"/>
+                            <constraint firstItem="cJl-bo-bE3" firstAttribute="leading" secondItem="W8T-rk-8jp" secondAttribute="leading" constant="20" id="g8Q-xj-sw7"/>
+                            <constraint firstItem="JfV-AJ-Pbw" firstAttribute="top" secondItem="cJl-bo-bE3" secondAttribute="bottom" constant="30" id="hWz-Qb-SEW"/>
+                            <constraint firstItem="JfV-AJ-Pbw" firstAttribute="width" secondItem="fat-Ln-TbE" secondAttribute="width" id="i7m-YY-WY8"/>
+                            <constraint firstItem="4cf-am-hic" firstAttribute="top" secondItem="JfV-AJ-Pbw" secondAttribute="bottom" constant="30" id="v7i-OY-1nr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="MQZ-8f-vu4"/>
+                    <connections>
+                        <outlet property="convertedCurrencyTextField" destination="JDQ-3h-iaO" id="Ldi-fB-DOX"/>
+                        <outlet property="detailsButton" destination="4cf-am-hic" id="V9y-GD-6bu"/>
+                        <outlet property="fromTextField" destination="fat-Ln-TbE" id="jSQ-rj-cCj"/>
+                        <outlet property="inputCurrencyTextField" destination="JfV-AJ-Pbw" id="wtn-xI-Jtc"/>
+                        <outlet property="swapButton" destination="gub-mU-vz7" id="i74-0S-oFG"/>
+                        <outlet property="titleLabel" destination="swa-r8-kQs" id="xYd-rV-fMb"/>
+                        <outlet property="toTextField" destination="B3g-XO-6qf" id="dUD-tr-pdS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M6L-G6-Y5O" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="594" y="123"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="SwapIcon" width="24" height="24"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
