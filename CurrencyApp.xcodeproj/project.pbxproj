@@ -53,6 +53,11 @@
 		9183DAA028FD8ED900E205C3 /* OtherCurrencyDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9183DA9D28FD8ED900E205C3 /* OtherCurrencyDataTableViewCell.swift */; };
 		9183DAA128FD8ED900E205C3 /* OtherCurrencyDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9183DA9E28FD8ED900E205C3 /* OtherCurrencyDataTableViewCell.xib */; };
 		9183DAA228FD8ED900E205C3 /* OtherCurrencyDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9183DA9E28FD8ED900E205C3 /* OtherCurrencyDataTableViewCell.xib */; };
+		9183DAA428FD963200E205C3 /* CurrencyDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9183DAA328FD963200E205C3 /* CurrencyDetailsViewModelTests.swift */; };
+		9183DAA528FD96A400E205C3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9183DA6D28FD4BE100E205C3 /* BaseViewController.swift */; };
+		9183DAA628FD96E300E205C3 /* ProgressBarViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9183DA7628FD57F200E205C3 /* ProgressBarViewable.swift */; };
+		9183DAA728FD96E500E205C3 /* AnimatedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9183DA7228FD57C500E205C3 /* AnimatedProgressView.swift */; };
+		9183DAA828FD96E800E205C3 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9183DA7428FD57E000E205C3 /* ProgressBarView.swift */; };
 		95B77CC97D43F9A2D057B194 /* Pods_CurrencyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0F14CF753E74E05C97B217 /* Pods_CurrencyApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +116,7 @@
 		9183DA9628FD8E9400E205C3 /* UserHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		9183DA9D28FD8ED900E205C3 /* OtherCurrencyDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherCurrencyDataTableViewCell.swift; sourceTree = "<group>"; };
 		9183DA9E28FD8ED900E205C3 /* OtherCurrencyDataTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OtherCurrencyDataTableViewCell.xib; sourceTree = "<group>"; };
+		9183DAA328FD963200E205C3 /* CurrencyDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		942BF59BC7E2DAC39FAAF286 /* Pods_CurrencyApp_CurrencyAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CurrencyApp_CurrencyAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8BA96817877C8744CC257FB /* Pods-CurrencyApp-CurrencyAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurrencyApp-CurrencyAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-CurrencyApp-CurrencyAppUITests/Pods-CurrencyApp-CurrencyAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BAC0B5A1B51B7605ECB3CFAE /* Pods-CurrencyAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurrencyAppTests.debug.xcconfig"; path = "Target Support Files/Pods-CurrencyAppTests/Pods-CurrencyAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -198,6 +204,7 @@
 			children = (
 				9183DA3F28FD2BE700E205C3 /* CurrencyAppTests.swift */,
 				9183DA7F28FD894D00E205C3 /* CurrencyConverterViewModalTests.swift */,
+				9183DAA328FD963200E205C3 /* CurrencyDetailsViewModelTests.swift */,
 			);
 			path = CurrencyAppTests;
 			sourceTree = "<group>";
@@ -641,11 +648,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9183DAA628FD96E300E205C3 /* ProgressBarViewable.swift in Sources */,
 				9183DA8A28FD8DC700E205C3 /* CurrencyModel.swift in Sources */,
 				9183DA8228FD8A3500E205C3 /* NetworkAdaptor.swift in Sources */,
 				9183DA8728FD8DAB00E205C3 /* HistoricalDataModel.swift in Sources */,
 				9183DA9028FD8E2100E205C3 /* CurrencyDataTableViewController.swift in Sources */,
 				9183DA8028FD894D00E205C3 /* CurrencyConverterViewModalTests.swift in Sources */,
+				9183DAA528FD96A400E205C3 /* BaseViewController.swift in Sources */,
+				9183DAA428FD963200E205C3 /* CurrencyDetailsViewModelTests.swift in Sources */,
+				9183DAA728FD96E500E205C3 /* AnimatedProgressView.swift in Sources */,
 				9183DAA028FD8ED900E205C3 /* OtherCurrencyDataTableViewCell.swift in Sources */,
 				9183DA9828FD8E9400E205C3 /* UserHistoryTableViewCell.swift in Sources */,
 				9183DA4028FD2BE700E205C3 /* CurrencyAppTests.swift in Sources */,
@@ -653,6 +664,7 @@
 				9183DA8D28FD8DEF00E205C3 /* CurrencyDetailsViewModel.swift in Sources */,
 				9183DA9328FD8E4500E205C3 /* CurrencyDetailsViewController.swift in Sources */,
 				9183DA8328FD8A5000E205C3 /* AppConstants.swift in Sources */,
+				9183DAA828FD96E800E205C3 /* ProgressBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

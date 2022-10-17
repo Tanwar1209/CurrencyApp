@@ -5,29 +5,80 @@
 //  Created by Tarun Tanwar on 17/10/22.
 //
 
+
 import XCTest
+@testable import CurrencyApp
 
 class CurrencyDetailsViewModelTests: XCTestCase {
-
+    var currencyDetailModel: CurrencyDetailsViewModel?
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        currencyDetailModel = CurrencyDetailsViewModel()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        currencyDetailModel = nil
+    }
+    
+    func testConvertCurrency() throws {
+        guard let convertCurrencyDetailsModel = currencyDetailModel else {
+            return
+        }
+        let convertedValue = convertCurrencyDetailsModel.convertCurrency(fromValue: 1.0, toValue: 1.0, valueToConvert: 2.0)
+        
+        XCTAssertNotNil(convertedValue)
+        XCTAssertEqual(convertedValue, "2.000")
+    }
+    
+    func testGetHistoricalDates() throws {
+        guard let convertCurrencyDetailsModel = currencyDetailModel else {
+            return
+        }
+        
+        let dates = convertCurrencyDetailsModel.getHistoricalDates()
+        XCTAssertNotNil(dates)
+        XCTAssertEqual(dates.count, 2)
+        
+    }
+    
+    func testGetPopularCurrencySymbols() throws {
+        guard let convertCurrencyDetailsModel = currencyDetailModel else {
+            return
+        }
+        
+        let popularCurrency = convertCurrencyDetailsModel.getPopularCurrencySymbols()
+        XCTAssertNotNil(popularCurrency)
+        XCTAssertGreaterThanOrEqual(popularCurrency.count, 10)
+    }
+    
+    func testCreateOtherCurrencyData() throws {
+        guard let convertCurrencyDetailsModel = currencyDetailModel else {
+            return
+        }
+        
+        let rates = ["INR" : 1.0, "CAD": 2.0, "EUR": 3.0]
+        let toArray = ["INR", "CAD"]
+        
+        let currencyData = convertCurrencyDetailsModel.createOtherCurrencyData(toSymbols: toArray, ratesData: rates, fromSymbol: "EUR", valueToConvert: "2")
+        
+        XCTAssertNotNil(currencyData)
+        XCTAssertEqual(currencyData.count, 2)
+
     }
 
+
     func testExample() throws {
-        // Use recording to get started writing UI tests.
+        // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+
+    func testPerformanceExample() throws {
+        // This is an example of a performance test case.
+        self.measure {
+            // Put the code you want to measure the time of here.
+        }
     }
 
 }

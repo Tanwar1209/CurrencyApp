@@ -21,6 +21,15 @@ class CurrencyDetailsViewController: BaseViewController {
     
     let disposeBag = DisposeBag()
     
+    private lazy var dataViewForOtherCurrencyData: CurrencyDataTableViewController = {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+
+        var viewController = storyboard.instantiateViewController(withIdentifier: "CurrencyDataTableViewController") as! CurrencyDataTableViewController
+        viewController.informationType = .otherCurrencyData
+        self.add(asChildViewController: viewController, to: self.otherCurrencyView)
+        return viewController
+    }()
+    
     private lazy var dataViewForHistoricalCurrencyData: CurrencyDataTableViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
@@ -43,6 +52,12 @@ class CurrencyDetailsViewController: BaseViewController {
     
     
     private func setupBindings() {
+
+        currencyDetailViewModel
+            .currencyModel
+            .observe(on: MainScheduler.instance)
+            .bind(to: dataViewForOtherCurrencyData.currencyData)
+            .disposed(by: disposeBag)
         
         currencyDetailViewModel
             .historicalDataModel
