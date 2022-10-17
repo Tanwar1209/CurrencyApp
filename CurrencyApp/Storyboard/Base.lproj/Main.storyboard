@@ -122,6 +122,73 @@
             </objects>
             <point key="canvasLocation" x="594" y="123"/>
         </scene>
+        <!--Currency Details View Controller-->
+        <scene sceneID="iP8-fK-mbU">
+            <objects>
+                <viewController storyboardIdentifier="CurrencyDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aLM-dI-0MD" customClass="CurrencyDetailsViewController" customModule="CurrencyConverterApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZRE-3W-dhg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jci-hY-lyd">
+                                <rect key="frame" x="0.0" y="44" width="203" height="818"/>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nNi-Oa-Ndv">
+                                <rect key="frame" x="211" y="44" width="203" height="818"/>
+                            </containerView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0Lm-mo-qhA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Jci-hY-lyd" firstAttribute="width" secondItem="ZRE-3W-dhg" secondAttribute="width" multiplier="0.49" id="5lW-NL-zTy"/>
+                            <constraint firstItem="nNi-Oa-Ndv" firstAttribute="width" secondItem="ZRE-3W-dhg" secondAttribute="width" multiplier="0.49" id="6nj-Ry-5Af"/>
+                            <constraint firstItem="Jci-hY-lyd" firstAttribute="top" secondItem="0Lm-mo-qhA" secondAttribute="top" id="8jx-Mu-DgC"/>
+                            <constraint firstItem="nNi-Oa-Ndv" firstAttribute="top" secondItem="0Lm-mo-qhA" secondAttribute="top" id="FWY-vx-f11"/>
+                            <constraint firstAttribute="trailing" secondItem="nNi-Oa-Ndv" secondAttribute="trailing" id="M6z-80-Cd9"/>
+                            <constraint firstItem="Jci-hY-lyd" firstAttribute="leading" secondItem="0Lm-mo-qhA" secondAttribute="leading" id="Sf7-xh-JVe"/>
+                            <constraint firstItem="0Lm-mo-qhA" firstAttribute="bottom" secondItem="nNi-Oa-Ndv" secondAttribute="bottom" id="UhL-6R-3ms"/>
+                            <constraint firstItem="0Lm-mo-qhA" firstAttribute="bottom" secondItem="Jci-hY-lyd" secondAttribute="bottom" id="yh1-E9-Kac"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="historicalView" destination="Jci-hY-lyd" id="7aR-xk-D6S"/>
+                        <outlet property="otherCurrencyView" destination="nNi-Oa-Ndv" id="fpY-G1-jPQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gw9-mY-HUb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1848" y="123"/>
+        </scene>
+        <!--Currency Data Table View Controller-->
+        <scene sceneID="4TM-NG-pxQ">
+            <objects>
+                <viewController storyboardIdentifier="CurrencyDataTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Smd-SL-Dei" customClass="CurrencyDataTableViewController" customModule="CurrencyConverterApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CC0-Zk-RKG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="set-sF-dE6">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="j5M-ml-mzx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="set-sF-dE6" secondAttribute="bottom" id="94T-v9-yx0"/>
+                            <constraint firstItem="set-sF-dE6" firstAttribute="top" secondItem="CC0-Zk-RKG" secondAttribute="top" id="R8t-wR-QhY"/>
+                            <constraint firstItem="set-sF-dE6" firstAttribute="leading" secondItem="CC0-Zk-RKG" secondAttribute="leading" id="dLw-4h-2J1"/>
+                            <constraint firstAttribute="trailing" secondItem="set-sF-dE6" secondAttribute="trailing" id="wbn-jG-5jo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="set-sF-dE6" id="6wV-c7-LWa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EUn-fO-93M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3174" y="123"/>
+        </scene>
     </scenes>
     <resources>
         <image name="SwapIcon" width="24" height="24"/>

@@ -134,7 +134,16 @@ class CurrencyConverterVC: BaseViewController {
         }
         
         let _ = detailsButton.rx.tap.bind {
-           print("Load Details")
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+
+            // Instantiate View Controller
+            let viewController = storyboard.instantiateViewController(withIdentifier: "CurrencyDetailsViewController") as! CurrencyDetailsViewController
+            viewController.fromCurrencyCode = self.fromTextField.text!
+            viewController.fromCurrencyValue = self.inputCurrencyTextField.text!
+            viewController.toCurrencyCode = self.toTextField.text!
+            viewController.toCurrencyValue = self.convertedCurrencyTextField.text!
+
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
     
