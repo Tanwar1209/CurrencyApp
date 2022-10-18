@@ -10,8 +10,6 @@
 		3C1217480EF74C5365F22742 /* Pods_CurrencyAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57761B34B0616BCACF06B564 /* Pods_CurrencyAppTests.framework */; };
 		901F8F697B208C6C9120B21D /* Pods_CurrencyApp_CurrencyAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 942BF59BC7E2DAC39FAAF286 /* Pods_CurrencyApp_CurrencyAppUITests.framework */; };
 		9183DA2928FD2BE500E205C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9183DA2828FD2BE500E205C3 /* AppDelegate.swift */; };
-		9183DA2B28FD2BE500E205C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9183DA2A28FD2BE500E205C3 /* SceneDelegate.swift */; };
-		9183DA2D28FD2BE500E205C3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9183DA2C28FD2BE500E205C3 /* ViewController.swift */; };
 		9183DA3028FD2BE500E205C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9183DA2E28FD2BE500E205C3 /* Main.storyboard */; };
 		9183DA3228FD2BE700E205C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9183DA3128FD2BE700E205C3 /* Assets.xcassets */; };
 		9183DA3528FD2BE700E205C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9183DA3328FD2BE700E205C3 /* LaunchScreen.storyboard */; };
@@ -82,8 +80,6 @@
 		57761B34B0616BCACF06B564 /* Pods_CurrencyAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CurrencyAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9183DA2528FD2BE500E205C3 /* CurrencyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9183DA2828FD2BE500E205C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9183DA2A28FD2BE500E205C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9183DA2C28FD2BE500E205C3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9183DA2F28FD2BE500E205C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9183DA3128FD2BE700E205C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9183DA3428FD2BE700E205C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -185,13 +181,10 @@
 				9183DA5C28FD39A500E205C3 /* Views */,
 				9183DA5B28FD399D00E205C3 /* Storyboard */,
 				9183DA5A28FD399300E205C3 /* Network */,
-				9183DA5928FD398A00E205C3 /* Models */,
 				9183DA5828FD397000E205C3 /* Controllers */,
-				9183DA8428FD8D6A00E205C3 /* Model */,
+				9183DA8428FD8D6A00E205C3 /* Models */,
 				9183DA7C28FD669300E205C3 /* ViewModel */,
 				9183DA2828FD2BE500E205C3 /* AppDelegate.swift */,
-				9183DA2A28FD2BE500E205C3 /* SceneDelegate.swift */,
-				9183DA2C28FD2BE500E205C3 /* ViewController.swift */,
 				9183DA3128FD2BE700E205C3 /* Assets.xcassets */,
 				9183DA3328FD2BE700E205C3 /* LaunchScreen.storyboard */,
 				9183DA3628FD2BE700E205C3 /* Info.plist */,
@@ -227,13 +220,6 @@
 				9183DA9128FD8E4500E205C3 /* CurrencyDetailsViewController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		9183DA5928FD398A00E205C3 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		9183DA5A28FD399300E205C3 /* Network */ = {
@@ -325,13 +311,13 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		9183DA8428FD8D6A00E205C3 /* Model */ = {
+		9183DA8428FD8D6A00E205C3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				9183DA8528FD8DAB00E205C3 /* HistoricalDataModel.swift */,
 				9183DA8828FD8DC700E205C3 /* CurrencyModel.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		9183DA9428FD8E5D00E205C3 /* HistoricalDataTableViewFiles */ = {
@@ -655,9 +641,7 @@
 				9183DA8628FD8DAB00E205C3 /* HistoricalDataModel.swift in Sources */,
 				9183DA7728FD57F200E205C3 /* ProgressBarViewable.swift in Sources */,
 				9183DA9728FD8E9400E205C3 /* UserHistoryTableViewCell.swift in Sources */,
-				9183DA2D28FD2BE500E205C3 /* ViewController.swift in Sources */,
 				9183DA2928FD2BE500E205C3 /* AppDelegate.swift in Sources */,
-				9183DA2B28FD2BE500E205C3 /* SceneDelegate.swift in Sources */,
 				9183DA6E28FD4BE100E205C3 /* BaseViewController.swift in Sources */,
 				9183DA6828FD431100E205C3 /* AppConstants.swift in Sources */,
 			);
