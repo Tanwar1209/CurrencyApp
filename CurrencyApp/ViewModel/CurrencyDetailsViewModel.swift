@@ -12,7 +12,11 @@ class CurrencyDetailsViewModel {
     public let currencyModel: PublishSubject<[CurrencyModel]> = PublishSubject()
     public let historicalDataModel: PublishSubject<[HistoricalDataModel]> = PublishSubject()
     public let error: PublishSubject<NetworkError> = PublishSubject()
+    private var currencyConverterService: CurrencyConverterServiceProtocol
     
+    init(currencyConverterService: CurrencyConverterServiceProtocol = CurrencyConverterService()) {
+        self.currencyConverterService = currencyConverterService
+    }
     func getHistoricalCurrencyData(fromSymbol: String, toSymbol: String, valueToConvert: String, convertedLatestValue: String) {
         var queryItemsDict = [String: String]()
         queryItemsDict[StringConstants.baseKey] = StringConstants.euroSymbol
@@ -36,7 +40,7 @@ class CurrencyDetailsViewModel {
                 case .success(let dta):
                     if let rates = dta[StringConstants.ratesKey] as? [String: Double] {
                         if let fromValue = rates[fromSymbol], let toValue = rates[toSymbol], let value = Double(valueToConvert) {
-                            let convertedValue = self.convertCurrency(fromValue: fromValue, toValue: toValue, valueToConvert: value)
+                            let convertedValue = self.currencyConverterService.convertCurrency(fromValue: fromValue, toValue: toValue, valueToConvert: value)
                             historicalModel.append(HistoricalDataModel(fromCurrencySymbol: fromSymbol, fromCurrencyValue: valueToConvert, toCurrencySymobl: toSymbol, toCurrencyValue: convertedValue, dateString: dateString))
                         }
                     }
@@ -48,6 +52,7 @@ class CurrencyDetailsViewModel {
             self.historicalDataModel.onNext(historicalModel)
         }
     }
+
     func getConvertedCurrency(fromSymbol: String, toSymbol: [String], valueToConvert: String) {
         var queryItemsDict = [String: String]()
         queryItemsDict[StringConstants.baseKey] = StringConstants.euroSymbol
@@ -56,36 +61,17 @@ class CurrencyDetailsViewModel {
             symbolData += StringConstants.commaString + symbol
         }
         queryItemsDict[StringConstants.symbolsKey] = symbolData
-        NetworkAdaptor.shared.getDataResponse(urlString: APIConstants.latestEndPoint, queryItems: queryItemsDict, completionBlock: { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .failure(let networkError):
-                if let error = networkError as? NetworkError {
+        currencyConverterService.getConvertedCurrency(queryItemsDict: queryItemsDict, fromSymbol: fromSymbol, toSymbol: "", toArraySymbol: toSymbol, valueToConvert: valueToConvert) { success, _, resultModel, networkError  in
+            if success, let currencyDataModel = resultModel {
+                self.currencyModel.onNext(currencyDataModel)
+            } else {
+                if let error = networkError {
                     self.error.onNext(error)
                 }
-
-            case .success(let dta):
-                if let rates = dta[StringConstants.ratesKey] as? [String: Double] {
-                    let currencyDataModel = self.createOtherCurrencyData(toSymbols: toSymbol, ratesData: rates, fromSymbol: fromSymbol, valueToConvert: valueToConvert)
-                    self.currencyModel.onNext(currencyDataModel)
-                }
-            }
-        })
-    }
-    func createOtherCurrencyData(toSymbols: [String], ratesData: [String: Double], fromSymbol: String, valueToConvert: String) -> [CurrencyModel] {
-        var model = [CurrencyModel]()
-        for symbol in toSymbols {
-            if let fromValue = ratesData[fromSymbol], let toValue = ratesData[symbol], let value = Double(valueToConvert) {
-                let convertedValue = convertCurrency(fromValue: fromValue, toValue: toValue, valueToConvert: value)
-                model.append(CurrencyModel(currencySymbol: symbol, currencyValue: convertedValue))
             }
         }
-        return model
     }
-    func convertCurrency(fromValue: Double, toValue: Double, valueToConvert: Double) -> String {
-         let convertValue = (toValue * valueToConvert) / fromValue
-        return String(format: "%.3f", convertValue)
-    }
+
     func getHistoricalDates() -> [String] {
         var datesData = [String]()
         let dateFormatter = DateFormatter()

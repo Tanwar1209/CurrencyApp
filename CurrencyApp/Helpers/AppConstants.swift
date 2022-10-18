@@ -36,6 +36,7 @@ struct StringConstants {
     static let dateFormatString = "yyyy-MM-dd"
     static let commaString = ","
     static let accessKey = "access_key"
+    static let apiKey = "apikey"
 }
 
 struct APIConstants {

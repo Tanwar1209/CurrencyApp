@@ -27,13 +27,14 @@ class NetworkAdaptor {
      }
     public func getDataResponse(urlString: String, queryItems: [String: String]? = nil, completionBlock: @escaping (Result<[String: Any], Error>) -> Void) {
         let URL = baseURL.appendingPathComponent(urlString)
-        var urlComponents = URLComponents(url: URL, resolvingAgainstBaseURL: false)
-        urlComponents?.queryItems = self.getQueryItems(queryItemDictionary: queryItems)
+        let urlComponents = URLComponents(url: URL, resolvingAgainstBaseURL: false)
         guard let fullURL = urlComponents?.url else {
             completionBlock(.failure(NetworkError.invalidURL(NSLocalizedString("INVALID_URL_ERROR", comment: "Invalid URL error"))))
             return
         }
-           let task = URLSession.shared.dataTask(with: fullURL) { data, response, error in
+        var request = URLRequest(url: fullURL)
+        request.setValue(self.infoForKey("APIKey")!, forHTTPHeaderField: StringConstants.apiKey)
+           let task = URLSession.shared.dataTask(with: request) { data, response, error in
                guard error == nil else {
                    completionBlock(.failure(NetworkError.internetError(NSLocalizedString("NETWORK_ERROR_MESSAGE", comment: "Network error"))))
                    return
@@ -60,15 +61,4 @@ class NetworkAdaptor {
            }
            task.resume()
        }
-    private func getQueryItems(queryItemDictionary: [String: String]?) -> [URLQueryItem] {
-        var items = [URLQueryItem]()
-        items.append(URLQueryItem(name: StringConstants.accessKey, value: self.infoForKey("APIKey")!))
-        guard let itemDictionary = queryItemDictionary else {
-            return items
-        }
-        for key in itemDictionary.keys {
-            items.append(URLQueryItem(name: key, value: itemDictionary[key]))
-        }
-        return items
-    }
 }

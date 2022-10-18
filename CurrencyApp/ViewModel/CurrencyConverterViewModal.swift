@@ -13,52 +13,44 @@ class CurrencyConverterViewModal {
     public let convertedValue: PublishSubject<String> = PublishSubject()
     public let error: PublishSubject<NetworkError> = PublishSubject()
     public let loading: PublishSubject<Bool> = PublishSubject()
-    
+    private var currencyConverterService: CurrencyConverterServiceProtocol
+
+    init(currencyConverterService: CurrencyConverterServiceProtocol = CurrencyConverterService()) {
+        self.currencyConverterService = currencyConverterService
+    }
+
     func getValidCurrencySymbols() {
         self.loading.onNext(true)
-        NetworkAdaptor.shared.getDataResponse(urlString: APIConstants.symbolsEndPoint, completionBlock: { [weak self] result in
-                   guard let self = self else {return}
-                self.loading.onNext(false)
-                   switch result {
-                   case .failure(let networkError):
-                       if let error = networkError as? NetworkError {
-                           self.error.onNext(error)
-                       }
-                   case .success(let dta):
-                       if let symbolsData = dta[StringConstants.symbolsKey] as? [String: String] {
-                           let allSymbols = Array(symbolsData.keys)
-                           let sortedSymbols = allSymbols.sorted()
-                           self.currencySymbols.onNext(sortedSymbols)
-                       }
-                   }
-               })
+        currencyConverterService.getValidCurrencySymbols { success, data, networkError in
+            self.loading.onNext(false)
+            if success, let data = data {
+                if let symbolsData = data[StringConstants.symbolsKey] as? [String: String] {
+                    let allSymbols = Array(symbolsData.keys)
+                    let sortedSymbols = allSymbols.sorted()
+                    self.currencySymbols.onNext(sortedSymbols)
+                }
+            } else {
+                if let error = networkError {
+                    self.error.onNext(error)
+                }
+            }
+        }
     }
+
     func getConvertedCurrency(fromSymbol: String, toSymbol: String, valueToConvert: String) {
+        self.loading.onNext(true)
         var queryItemsDict = [String: String]()
         queryItemsDict[StringConstants.baseKey] = StringConstants.euroSymbol
         queryItemsDict[StringConstants.symbolsKey] = fromSymbol + StringConstants.commaString + toSymbol
-        self.loading.onNext(true)
-        NetworkAdaptor.shared.getDataResponse(urlString: APIConstants.latestEndPoint, queryItems: queryItemsDict, completionBlock: { [weak self] result in
-            guard let self = self else { return }
+        currencyConverterService.getConvertedCurrency(queryItemsDict: queryItemsDict, fromSymbol: fromSymbol, toSymbol: toSymbol, toArraySymbol: [], valueToConvert: valueToConvert) { success, resultString, _, networkError  in
             self.loading.onNext(false)
-            switch result {
-            case .failure(let networkError):
-                if let error = networkError as? NetworkError {
+            if success, let convertedString = resultString {
+                self.convertedValue.onNext(convertedString)
+            } else {
+                if let error = networkError {
                     self.error.onNext(error)
                 }
-
-            case .success(let dta):
-                if let rates = dta[StringConstants.ratesKey] as? [String: Double] {
-                    if let fromValue = rates[fromSymbol], let toValue = rates[toSymbol], let value = Double(valueToConvert) {
-                        let convertedString = self.convertCurrency(fromValue: fromValue, toValue: toValue, valueToConvert: value)
-                        self.convertedValue.onNext(convertedString)
-                    }
-                }
             }
-        })
-    }
-    func convertCurrency(fromValue: Double, toValue: Double, valueToConvert: Double) -> String {
-         let convertValue = (toValue * valueToConvert) / fromValue
-        return String(format: "%.3f", convertValue)
+        }
     }
 }

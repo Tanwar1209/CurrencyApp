@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>APIKey</key>
-	<string>413e2d18ce2c1d7b46e59f4658618690</string>
+	<string>3k7t62q8bGjV0IG0vEkt2vUdn207fSUk</string>
 	<key>BaseUrl</key>
-	<string>http:\/\/data.fixer.io/api/</string>
+	<string>https://api.apilayer.com/fixer/</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
