@@ -6,12 +6,9 @@
 //
 
 import Foundation
-import RxSwift
 import RxCocoa
-
-
+import RxSwift
 class CurrencyConverterViewModal {
-    
     public let currencySymbols: PublishSubject<[String]> = PublishSubject()
     public let convertedValue: PublishSubject<String> = PublishSubject()
     public let error: PublishSubject<NetworkError> = PublishSubject()
@@ -27,8 +24,7 @@ class CurrencyConverterViewModal {
                        if let error = networkError as? NetworkError {
                            self.error.onNext(error)
                        }
-       
-                   case .success(let dta) :
+                   case .success(let dta):
                        if let symbolsData = dta[StringConstants.symbolsKey] as? [String: String] {
                            let allSymbols = Array(symbolsData.keys)
                            let sortedSymbols = allSymbols.sorted()
@@ -37,7 +33,6 @@ class CurrencyConverterViewModal {
                    }
                })
     }
-    
     func getConvertedCurrency(fromSymbol: String, toSymbol: String, valueToConvert: String) {
         var queryItemsDict = [String: String]()
         queryItemsDict[StringConstants.baseKey] = StringConstants.euroSymbol
@@ -52,7 +47,7 @@ class CurrencyConverterViewModal {
                     self.error.onNext(error)
                 }
 
-            case .success(let dta) :
+            case .success(let dta):
                 if let rates = dta[StringConstants.ratesKey] as? [String: Double] {
                     if let fromValue = rates[fromSymbol], let toValue = rates[toSymbol], let value = Double(valueToConvert) {
                         let convertedString = self.convertCurrency(fromValue: fromValue, toValue: toValue, valueToConvert: value)
@@ -60,13 +55,10 @@ class CurrencyConverterViewModal {
                     }
                 }
             }
-            
         })
     }
-    
-    func convertCurrency(fromValue: Double, toValue:Double, valueToConvert: Double) -> String {
+    func convertCurrency(fromValue: Double, toValue: Double, valueToConvert: Double) -> String {
          let convertValue = (toValue * valueToConvert) / fromValue
         return String(format: "%.3f", convertValue)
-        
     }
 }

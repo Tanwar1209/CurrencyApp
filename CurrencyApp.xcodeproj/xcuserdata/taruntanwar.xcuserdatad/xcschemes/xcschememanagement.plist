@@ -7,7 +7,25 @@
 		<key>CurrencyApp.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>7</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>9183DA2428FD2BE500E205C3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9183DA3A28FD2BE700E205C3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9183DA4428FD2BE700E205C3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

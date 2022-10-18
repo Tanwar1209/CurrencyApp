@@ -14,7 +14,6 @@ struct AppConstants {
 }
 
 struct StringConstants {
-    
     static let dollarSymbol = "USD"
     static let euroSymbol = "EUR"
     static let britishPoundSymbol = "GBP"
@@ -37,7 +36,6 @@ struct StringConstants {
     static let dateFormatString = "yyyy-MM-dd"
     static let commaString = ","
     static let accessKey = "access_key"
-    
 }
 
 struct APIConstants {
@@ -46,6 +44,6 @@ struct APIConstants {
 }
 
 struct CellConstants {
-    static let historicalDataCell = "UserHistoryTableViewCell";
-    static let otherCurrencyDataCell = "OtherCurrencyDataTableViewCell";
+    static let historicalDataCell = "UserHistoryTableViewCell"
+    static let otherCurrencyDataCell = "OtherCurrencyDataTableViewCell"
 }

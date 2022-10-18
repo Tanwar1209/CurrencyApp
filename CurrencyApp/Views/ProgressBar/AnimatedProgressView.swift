@@ -9,9 +9,8 @@ import Foundation
 import UIKit
 
 class AnimatedProgressView: UIView {
-    
     public var color: UIColor = UIColor.white
-    public var isAnimating : Bool = false
+    public var isAnimating: Bool = false
     /**
      Start animating.
      */
@@ -33,32 +32,26 @@ class AnimatedProgressView: UIView {
         let beginTime: Double = 0.5
         let strokeStartDuration: Double = 1.5
         let strokeEndDuration: Double = 1.1
-        
         let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotationAnimation.byValue = Float.pi * 2
         rotationAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-        
         let strokeEndAnimation = CABasicAnimation(keyPath: "strokeEnd")
         strokeEndAnimation.duration = strokeEndDuration
         strokeEndAnimation.timingFunction = CAMediaTimingFunction(controlPoints: 0.4, 0.0, 0.2, 1.0)
         strokeEndAnimation.fromValue = 0
         strokeEndAnimation.toValue = 1
-        
         let strokeStartAnimation = CABasicAnimation(keyPath: "strokeStart")
         strokeStartAnimation.duration = strokeStartDuration
         strokeStartAnimation.timingFunction = CAMediaTimingFunction(controlPoints: 0.4, 0.0, 0.2, 1.0)
-        
         strokeStartAnimation.fromValue = 0
         strokeStartAnimation.toValue = 1
         strokeStartAnimation.beginTime = beginTime
-        
         let groupAnimation = CAAnimationGroup()
         groupAnimation.animations = [rotationAnimation, strokeEndAnimation, strokeStartAnimation]
         groupAnimation.duration = strokeStartDuration + beginTime
         groupAnimation.repeatCount = .infinity
         groupAnimation.isRemovedOnCompletion = false
         groupAnimation.fillMode = CAMediaTimingFillMode.forwards
-        
         let circle = circleLayer(size: size, color: color)
         let frame = CGRect(
             x: (layer.bounds.width - size.width) / 2,
@@ -66,13 +59,12 @@ class AnimatedProgressView: UIView {
             width: size.width,
             height: size.height
         )
-        
         circle.frame = frame
         circle.add(groupAnimation, forKey: "animation")
         layer.addSublayer(circle)
         isAnimating = true
     }
-    func circleLayer(size: CGSize, color: UIColor) -> CALayer{
+    func circleLayer(size: CGSize, color: UIColor) -> CALayer {
         let layer: CAShapeLayer = CAShapeLayer()
         let path: UIBezierPath = UIBezierPath()
         path.addArc(withCenter: CGPoint(x: size.width / 2, y: size.height / 2),

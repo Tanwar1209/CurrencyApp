@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import RxSwift
 import RxCocoa
+import RxSwift
 
 class CurrencyPickerTF: UITextField {
-    
     private let pickerView = UIPickerView(frame: .zero)
     private let disposeBag = DisposeBag()
     public var pickerItems: BehaviorRelay<[String]> = BehaviorRelay(value: [])
@@ -19,26 +18,19 @@ class CurrencyPickerTF: UITextField {
         super.init(frame: frame)
         self.setupBindings()
     }
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.setupBindings()
     }
-    
     func setupBindings() {
         self.inputView = pickerView
-        
-        pickerItems.bind(to: self.pickerView.rx.itemTitles) { (row, element) in
+        pickerItems.bind(to: self.pickerView.rx.itemTitles) { _, element in
             return element
         }.disposed(by: disposeBag)
-        
-        
-        let _ = pickerView.rx.itemSelected
-            .subscribe(onNext: { (row, value) in
+         _ = pickerView.rx.itemSelected
+            .subscribe(onNext: { row, value in
                 self.text = self.pickerItems.value[row]
                 self.resignFirstResponder()
             })
-        
     }
-    
 }

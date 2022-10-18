@@ -13,15 +13,14 @@ protocol ProgressBarViewable {
     func stopAnimating()
 }
 
-extension ProgressBarViewable where Self : BaseViewController {
-    func startAnimating(){
+extension ProgressBarViewable where Self: BaseViewController {
+    func startAnimating() {
         let animateLoading = ProgressBarView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
         view.addSubview(animateLoading)
         view.bringSubviewToFront(animateLoading)
         animateLoading.restorationIdentifier = "loadingView"
         animateLoading.center = view.center
         animateLoading.loadingViewMessage = NSLocalizedString("LOADING_MESSAGE", comment: "Loading Message")
-       
         animateLoading.clipsToBounds = true
         animateLoading.startAnimation()
     }
@@ -30,7 +29,7 @@ extension ProgressBarViewable where Self : BaseViewController {
             where item.restorationIdentifier == "loadingView" {
                 UIView.animate(withDuration: 0.3, animations: {
                     item.alpha = 0
-                }) { (_) in
+                }) { _ in
                     item.removeFromSuperview()
                 }
         }

@@ -11,12 +11,12 @@ class ProgressBarView: UIView {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var animateView: AnimatedProgressView!
     @IBOutlet var containerView: UIView!
-    
-    public var loadingViewMessage : String! {
+    public var loadingViewMessage: String! {
         didSet {
             messageLabel.text = loadingViewMessage
         }
     }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -25,19 +25,19 @@ class ProgressBarView: UIView {
         super.init(coder: aDecoder)
         commonInit()
     }
-    private func commonInit(){
+    private func commonInit() {
         Bundle.main.loadNibNamed("ProgressBar", owner: self, options: nil)
         addSubview(containerView)
         containerView.frame = self.bounds
-        containerView.autoresizingMask = [.flexibleHeight,.flexibleWidth]
+        containerView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         containerView.addBlurAreaForLoading(area: containerView.bounds, style: .dark)
         containerView.bringSubviewToFront(messageLabel)
     }
-    public func startAnimation(){
+    public func startAnimation() {
         if animateView.isAnimating {return}
         animateView.startAnimating()
     }
-    public func stopAnimation(){
+    public func stopAnimation() {
         animateView.stopAnimating()
     }
 }

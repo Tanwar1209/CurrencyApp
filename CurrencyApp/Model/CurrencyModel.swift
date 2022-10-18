@@ -11,4 +11,3 @@ struct CurrencyModel {
     var currencySymbol: String
     var currencyValue: String
 }
-

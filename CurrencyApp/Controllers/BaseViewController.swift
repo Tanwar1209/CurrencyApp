@@ -6,17 +6,14 @@
 //
 
 import Foundation
-import UIKit
 import RxCocoa
 import RxSwift
-
-class BaseViewController: UIViewController {
-    
-    override func viewDidLoad() {
+import UIKit
+public class BaseViewController: UIViewController {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
     }
-    
     func parseNetworkError(error: NetworkError) {
         var errorMessage = ""
         switch error {
@@ -30,21 +27,13 @@ class BaseViewController: UIViewController {
             errorMessage = message
         case .internetError(let message):
             errorMessage = message
-        
         }
-        
         showErrorView(errorMessage: errorMessage)
     }
-    
     func showErrorView(errorMessage: String) {
         let errorDialogMessage = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
-        
-        
-        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
-        
-        //Add OK button to a dialog message
-        errorDialogMessage.addAction(ok)
-        // Present alert to user
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        errorDialogMessage.addAction(okAction)
         self.present(errorDialogMessage, animated: true, completion: nil)
     }
 }
@@ -52,35 +41,28 @@ class BaseViewController: UIViewController {
 extension BaseViewController: ProgressBarViewable {}
 
 extension Reactive where Base: BaseViewController {
-    
     /// Bindable sink for `startAnimating()`, `stopAnimating()` methods.
     internal var isAnimating: Binder<Bool> {
-        return Binder(self.base, binding: { (vc, active) in
+        return Binder(self.base, binding: { vcObject, active in
             if active {
-                vc.startAnimating()
+                vcObject.startAnimating()
             } else {
-                vc.stopAnimating()
+                vcObject.stopAnimating()
             }
         })
     }
-    
 }
 
-extension BaseViewController {
-    public func add(asChildViewController viewController: UIViewController,to parentView:UIView) {
+public extension BaseViewController {
+    func add(asChildViewController viewController: UIViewController, to parentView: UIView) {
         // Add Child View Controller
         addChild(viewController)
-        
         // Add Child View as Subview
         parentView.addSubview(viewController.view)
-        
         // Configure Child View
         viewController.view.frame = parentView.bounds
         viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
         // Notify Child View Controller
         viewController.didMove(toParent: self)
     }
 }
-
-

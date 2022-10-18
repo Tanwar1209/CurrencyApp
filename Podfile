@@ -8,6 +8,7 @@ target 'CurrencyApp' do
   # Pods for CurrencyApp
     pod 'RxSwift'
     pod 'RxCocoa'
+    pod 'SwiftLint'
 
   target 'CurrencyAppTests' do
     inherit! :search_paths

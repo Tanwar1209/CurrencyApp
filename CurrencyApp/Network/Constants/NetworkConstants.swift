@@ -11,8 +11,7 @@ protocol CoreNetworkConstantAdapter {
     static var networkPlistFileName: String { get }
 }
 
-struct NetworkConstants : CoreNetworkConstantAdapter {
-    
+struct NetworkConstants: CoreNetworkConstantAdapter {
     static var networkPlistFileName: String {
         return AppConstants.networkURLFile
     }

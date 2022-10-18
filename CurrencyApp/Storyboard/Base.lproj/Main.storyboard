@@ -54,8 +54,8 @@
                                             <constraint firstAttribute="width" constant="50" id="GJy-EE-MXx"/>
                                             <constraint firstAttribute="height" constant="44" id="XYW-fg-lg7"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="SwapIcon" title=" "/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title=" " image="SwapIcon"/>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="INR" borderStyle="roundedRect" placeholder="To" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B3g-XO-6qf" customClass="CurrencyPickerTF" customModule="CurrencyApp" customModuleProvider="target">
                                         <rect key="frame" x="232" y="0.0" width="142" height="44"/>
@@ -78,14 +78,14 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cf-am-hic">
-                                <rect key="frame" x="157" y="296.5" width="100" height="31"/>
+                                <rect key="frame" x="157" y="296.5" width="100" height="30"/>
                                 <color key="backgroundColor" name="AccentColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="KwF-Ls-yBu"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="KwF-Ls-yBu"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Details"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Details"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="W8T-rk-8jp"/>
@@ -125,7 +125,7 @@
         <!--Currency Details View Controller-->
         <scene sceneID="iP8-fK-mbU">
             <objects>
-                <viewController storyboardIdentifier="CurrencyDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aLM-dI-0MD" customClass="CurrencyDetailsViewController" customModule="CurrencyConverterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CurrencyDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aLM-dI-0MD" customClass="CurrencyDetailsViewController" customModule="CurrencyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZRE-3W-dhg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -162,7 +162,7 @@
         <!--Currency Data Table View Controller-->
         <scene sceneID="4TM-NG-pxQ">
             <objects>
-                <viewController storyboardIdentifier="CurrencyDataTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Smd-SL-Dei" customClass="CurrencyDataTableViewController" customModule="CurrencyConverterApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CurrencyDataTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Smd-SL-Dei" customClass="CurrencyDataTableViewController" customModule="CurrencyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CC0-Zk-RKG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
