@@ -17,6 +17,7 @@ class CurrencyConverterVC: BaseViewController {
     @IBOutlet weak var detailsButton: UIButton!
     @IBOutlet weak var convertedCurrencyTextField: UITextField!
     @IBOutlet weak var inputCurrencyTextField: UITextField!
+    var selectedTF: UITextField?
     var currencyConverterViewModel = CurrencyConverterViewModal()
     let disposeBag = DisposeBag()
     
@@ -30,7 +31,20 @@ class CurrencyConverterVC: BaseViewController {
         self.setupViewModelBindings()
         self.currencyConverterViewModel.getValidCurrencySymbols()
         self.inputCurrencyTextField.inputAccessoryView = toolBar()
+        self.fromTextField.inputAccessoryView = toolBar()
+        self.toTextField.inputAccessoryView = toolBar()
+        fromTextField.delegate = self
+        toTextField.delegate = self
         fromTextField.tintColor = .white
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        view.addGestureRecognizer(tap)
+        view.isUserInteractionEnabled = true
+    }
+    @objc
+    func handleTap(_ sender: UITapGestureRecognizer) {
+        self.inputCurrencyTextField.endEditing(true)
+        self.fromTextField.endEditing(true)
+        self.toTextField.endEditing(true)
     }
     func toolBar() -> UIToolbar {
         let toolBar = UIToolbar()
@@ -49,12 +63,30 @@ class CurrencyConverterVC: BaseViewController {
     }
     @objc
     func doneButtonPressed() {
-        self.inputCurrencyTextField.endEditing(true)
+        if selectedTF == self.fromTextField {
+            if  let changedValue = self.fromTextField.selectedRowItem {
+                if changedValue.count > 1 {
+                    self.fromTextField.text = changedValue
+                }
+            }
+            self.fromTextField.endEditing(true)
+        } else if selectedTF == self.toTextField {
+            if  let changedValue = self.toTextField.selectedRowItem {
+                if changedValue.count > 1 {
+                    self.toTextField.text = changedValue
+                }
+            }
+            self.toTextField.endEditing(true)
+        } else {
+            self.inputCurrencyTextField.endEditing(true)
+        }
     }
 
     @objc
     func cancelButtonPressed() {
         self.inputCurrencyTextField.endEditing(true)
+        self.fromTextField.endEditing(true)
+        self.toTextField.endEditing(true)
     }
     func setupViewModelBindings() {
         currencyConverterViewModel.loading
@@ -136,5 +168,10 @@ class CurrencyConverterVC: BaseViewController {
     }
     func callCurrencyConversionAPI() {
         currencyConverterViewModel.getConvertedCurrency(fromSymbol: fromTextField.text!, toSymbol: toTextField.text!, valueToConvert: inputCurrencyTextField.text!)
+    }
+}
+extension CurrencyConverterVC: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        selectedTF = textField
     }
 }

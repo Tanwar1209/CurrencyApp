@@ -13,6 +13,7 @@ class CurrencyPickerTF: UITextField {
     private let pickerView = UIPickerView(frame: .zero)
     private let disposeBag = DisposeBag()
     public var pickerItems: BehaviorRelay<[String]> = BehaviorRelay(value: [])
+    public var selectedRowItem: String?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,8 +30,8 @@ class CurrencyPickerTF: UITextField {
         }.disposed(by: disposeBag)
          _ = pickerView.rx.itemSelected
             .subscribe(onNext: { row, value in
-                self.text = self.pickerItems.value[row]
-                self.resignFirstResponder()
+                  self.selectedRowItem = self.pickerItems.value[row]
+              //  self.resignFirstResponder()
             })
     }
 }
