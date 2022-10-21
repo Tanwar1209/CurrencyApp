@@ -8,6 +8,7 @@
 import Foundation
 
 struct AppConstants {
+    static let baseURLKey = "BaseUrl"
     static let localizeFile = "Currency-Localizable"
     static let networkURLFile = "CurrencyNetworkURL"
     static let currencyServiceAdapter = "CurrencyService"

@@ -18,7 +18,7 @@ enum NetworkError: Error {
 class NetworkAdaptor {
     static let shared: NetworkAdaptor = NetworkAdaptor()
     private var baseURL: URL {
-            return URL(string: infoForKey("BaseUrl")!)!
+            return URL(string: infoForKey(AppConstants.baseURLKey)!)!
     }
 
     public func infoForKey(_ key: String) -> String? {

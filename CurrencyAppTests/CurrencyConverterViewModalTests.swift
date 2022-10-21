@@ -6,39 +6,58 @@
 //
 
 import XCTest
+@testable import CurrencyApp
 
 class CurrencyConverterViewModalTests: XCTestCase {
-    var convertCurrency: CurrencyConverterViewModal?
+    var convertCurrencyModel: CurrencyConverterViewModal?
+    var mockAPIService: MockApiService?
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        convertCurrency = CurrencyConverterViewModal()
+        mockAPIService = MockApiService()
+        convertCurrencyModel = CurrencyConverterViewModal(currencyConverterService: mockAPIService!)
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        convertCurrency = nil
+        convertCurrencyModel = nil
+        mockAPIService = nil
+    }
+
+    func test_convertCurrency_Call() throws {
+        convertCurrencyModel?.getConvertedCurrency(fromSymbol: "1.0", toSymbol: "1.0", valueToConvert: "2.0")
+        XCTAssert(mockAPIService!.isgetConvertedCurrencyCalled)
     }
     
-    func testConvertCurrency() throws {
-        guard let convertCurrencyModel = convertCurrency else {
-            return
+    func test_getValidCurrencySymbols_Call() throws {
+        convertCurrencyModel?.getValidCurrencySymbols()
+        XCTAssert(mockAPIService!.isgetValidCurrencySymbolsCalled)
+    }
+}
+
+class MockApiService: CurrencyConverterServiceProtocol {
+    var isConvertCurrencyCalled = false
+    var isgetValidCurrencySymbolsCalled = false
+    var isgetConvertedCurrencyCalled = false
+    var completeData: [String : Any] = [String : Any]() // Array of stubs
+    var completeClosure: ((Bool, [String : Any]?, NetworkError?) -> ())!
+
+    func getValidCurrencySymbols(completion: @escaping (Bool, [String : Any]?, NetworkError?) -> Void) {
+        isgetValidCurrencySymbolsCalled = true
+    }
+
+    func getConvertedCurrency(queryItemsDict: [String : String], fromSymbol: String, toSymbol: String?, toArraySymbol: [String]?, valueToConvert: String, completion: @escaping (Bool, String?, [CurrencyModel]?, NetworkError?) -> Void) {
+        isgetConvertedCurrencyCalled = true
+    }
+
+    func convertCurrency(fromValue: Double, toValue: Double, valueToConvert: Double) -> String {
+        isConvertCurrencyCalled = true
+        return ""
+    }
+
+    func fetchSuccess() {
+            completeClosure( true, completeData, nil )
         }
-        let convertedValue = convertCurrencyModel.convertCurrency(fromValue: 1.0, toValue: 1.0, valueToConvert: 2.0)
-        
-        XCTAssertNotNil(convertedValue)
-        XCTAssertEqual(convertedValue, "2.000")
-    }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func fetchFail(error: NetworkError?) {
+            completeClosure( false, [String : Any](), error )
         }
-    }
-
 }

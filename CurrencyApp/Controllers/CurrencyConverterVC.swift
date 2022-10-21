@@ -18,11 +18,13 @@ class CurrencyConverterVC: BaseViewController {
     @IBOutlet weak var convertedCurrencyTextField: UITextField!
     @IBOutlet weak var inputCurrencyTextField: UITextField!
     var selectedTF: UITextField?
-    var currencyConverterViewModel = CurrencyConverterViewModal()
     let disposeBag = DisposeBag()
+    var currencyConverterService: CurrencyConverterServiceProtocol = CurrencyConverterService()
+    var currencyConverterViewModel: CurrencyConverterViewModal!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        currencyConverterViewModel = CurrencyConverterViewModal(currencyConverterService: currencyConverterService)
         self.detailsButton.setTitle(NSLocalizedString("DETAILS", comment: "Details"), for: .normal)
         self.detailsButton.isEnabled = false
         self.titleLabel.text = NSLocalizedString("CURRENCY_CONVERTER_TITLE", comment: "Currency Converter title")

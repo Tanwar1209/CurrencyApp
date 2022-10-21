@@ -15,7 +15,7 @@ class CurrencyConverterViewModal {
     public let loading: PublishSubject<Bool> = PublishSubject()
     private var currencyConverterService: CurrencyConverterServiceProtocol
 
-    init(currencyConverterService: CurrencyConverterServiceProtocol = CurrencyConverterService()) {
+    init(currencyConverterService: CurrencyConverterServiceProtocol) {
         self.currencyConverterService = currencyConverterService
     }
 
